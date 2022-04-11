@@ -1,0 +1,78 @@
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<<<<<<<<<<<<< -- >>>>>>>>>>>>>
+<<<<<<<<<< 28-03-2022 >>>>>>>>>>
+<<<<<<<<<<<<< -- >>>>>>>>>>>>>
+
+
+
+
+
+1. to make project...
+|.....> django-admin startproject letsShop
+
+2. to entered on the project...
+|.....> cd letsShop
+
+3. to run our server, two choices...
+|.....> python manage.py runserver
+|.....> python manage.py runserver 1999
+and then go on browser and run our project.
+
+
+########################
+####### Commit : Initial #########################################
+########################
+
+
+4. then we make media, static, templates folders, so that in future we use these to store our html, css, js, jquery, bootstrap, images, or other files.
+
+5. then do makemigrations and migrate, 
+|.....> python manage.py makemigrations
+|.....> python manage.py migrate
+
+6. then command to create superuser is :
+|.....> python manage.py createsuperuser
+By the way here's superuser's name is "vashu07",
+And its password is also "vashu07".
+
+
+########################
+####### Commit : 2nd #########################################
+########################
+
+
+7. then i'll try to reset the username's password,
+|.....> python manage.py changepassword vashu07
+So now, here's superuser's name is "vashu07",
+And its password is also "vashu12345".
+
+8. Now first i'm shifting my template's files to my projects saperate folders. 
+
+
+########################
+####### Commit : 3nd #########################################
+########################
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
