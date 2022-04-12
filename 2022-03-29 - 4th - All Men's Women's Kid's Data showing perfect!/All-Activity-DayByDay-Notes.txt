@@ -1,0 +1,312 @@
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 28-03-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+1. to make project...
+|.....> django-admin startproject letsShop
+
+2. to entered on the project...
+|.....> cd letsShop
+
+3. to run our server, two choices...
+|.....> python manage.py runserver
+|.....> python manage.py runserver 1999
+and then go on browser and run our project.
+
+
+
+########################################################################
+#######  Commit : Initial  ######################################################
+########################################################################
+
+
+
+4. then we make media, static, templates folders, so that in future we use these to store our html, css, js, jquery, bootstrap, images, or other files.
+
+5. then do makemigrations and migrate, 
+|.....> python manage.py makemigrations
+|.....> python manage.py migrate
+
+6. then command to create superuser is :
+|.....> python manage.py createsuperuser
+By the way here's superuser's name is "vashu07",
+And its password is also "vashu07".
+
+
+
+########################################################################
+####### Commit : 2nd ########################################################
+########################################################################
+
+
+
+7. then i'll try to reset the username's password,
+|.....> python manage.py changepassword vashu07
+So now, here's superuser's name is "vashu07",
+And its password is also "vashu12345".
+
+8. Now first i'm shifting my template's files to my projects saperate folders. 
+
+
+
+########################################################################
+####### Commit : 3rd ########################################################
+########################################################################
+
+
+
+9. Now we create urls.py file, so that we set a flow of our website.
+
+from django.contrib import admin
+from django.urls import path
+from letsShop import views
+urlpatterns = [
+    # by default
+    path('admin/', admin.site.urls),
+    # Initial URL's for Pages
+    path('',views.index),
+    path('index/',views.index),
+    path('about-us/',views.aboutus),
+    path('contact/',views.contact),
+    path('products/',views.products),
+    path('single-product/',views.singleproduct),
+]
+
+We also able to set according to ristrictions, but now not must to implementing this,
+path('products/<productsid>',views.productsDetails),
+path('products/<int:productsid>',views.productsDetails),
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+10. And then we create one views.py file under project's same name app. 
+And then do some code there, look to its overview like that...
+
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
+# Initial Function's to Display Pages
+def index(request):
+    return render(request,'index.html'); 
+def aboutus(request):
+    return render(request,'about-us.html'); 
+def contact(request):
+    return render(request,'contact.html'); 
+def products(request):
+    return render(request,'products.html'); 
+def singleproduct(request):
+    return render(request,'single-product.html'); 
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+11. To connect these templates with projects, 
+We visit under project's same name app, and open settings.py file,
+and its template's DIRS section you you set location, as,
+'DIRS' : [BASE_DIR,"templates"], 
+
+And with it, we also set location for our static files, 
+You written these below of "STATIC_URL" secttion...
+STATICFILES_DIRS = [
+    BASE_DIR,"static"
+    # BASE_DIR/"static"
+] 
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+12. And one more step is, go on each html file and set a proper path for all HTML files.
+And after this again run server, and just type given url, and just open it.
+Now everythings works fine, its only just template implementations, nothing extra,
+And all the next steps are in the next lecture, so follow more commits...
+
+
+
+########################################################################
+####### Commit : 4th ########################################################
+########################################################################
+
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 29-03-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+13. Here we adding some managing link first, so that links working properly,
+And after Some confirurations, we moving forwaord in the next step...
+
+
+14. Now we create a app to that we manage add, delete, edit all operation by there,
+|.....> python manage.py startapp addproducts 
+14.1 - Now under project's same name app's settings.py INSTALLED_APPS's section, mention your app name.
+14.2 - And also make urls.py file under the your new created addproducts app.  # But Its no needed there, so that also delete! 
+
+
+
+########################################################################
+####### Commit : 1st ########################################################
+########################################################################
+
+
+
+NOTE : Here must thing is how to we manage star rating related thing,
+I mentioned it there, because it takes my more time, so always rem,ember this step.
+<ul class="stars">
+    <li><i class="fa fa-star"></i></li>               // full blank
+    <li><i class="fa fa-star"></i></li>               // full blank
+    <li><i class="fa fa-star"></i></li>               // full blank
+    <li><i class="fa fa-star-half-o"></i></li>    // half
+    <li><i class="fa fa-star-o"></i></li>           // full blank
+<ul>
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+Make Module with integration of AutoSlugField, HTMLField, Image FileField, and about stars too.
+
+15. Now we use AutoSlugField, because of we want to store product's slug internally automatically, 
+But first we install python-django's one package there, 
+|.....> pip install django-autoslug
+For Example : product_slug = AutoSlugField(populate_from='my_name', unique=True, null=True, default=None);
+Actually here 'populate_from' means which field's thrue we want to make slug, and other are basics.
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+16. Here is we also use HTMLField to Integration TinyMCE Editor project, so that details show uniquly, 
+Here before to implement tinymce, first task is to we install 'tinymce' package:
+|.....> pip install django-tinymce 
+For Example : product_details = HTMLField(); 
+Then you go under project's same name app's settings.py file's INSTALLED_APPS section, 
+and add there 'tinymca', and in the last also add below code, And then we are free to do use this editor on our project.
+# Must to add this, if you use 'tinymce' editor...
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField';
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+17. And because we want to create model, and there is must to use Image FileField, to take products image. 
+17.1 - Whenever we works with media's, must is under the project, first we create 'media' name's folder, where all uploading files storing. 
+17.2 - Then second step is we go on settings.py file and must to write two line there, if we want to work with media,
+# Must to add if we want to work with MEDIA's related things
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"
+17.3 - Then third step is we importing importing some things, under project's same name app's urls.py file's,
+..........................................
+# these importing is must if we working with media related thing
+from django.conf import settings 
+from django.conf.urls.static import static 
+urlpatterns = [
+    ...........................................
+]
+# this is also must if we working with media related things
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+Then now we are free to use this Image FileField, in our modules, but use carefully,
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+18. Then now we are moving to create models, here we create class who covers all products, 
+class Product_Entries(models.Model):
+    product_from = models.CharField(max_length=50);
+    product_name = models.CharField(max_length=100);
+    product_details = HTMLField(); 
+    product_price = models.CharField(max_length=10);
+    product_image = models.FileField(upload_to="products/", max_length=250,null=True,default=None);
+    product_slug = AutoSlugField(populate_from='product_name', unique=True, null=True, default=None);
+    product_create_date = models.DateTimeField(auto_now_add=True)
+    product_update_date = models.DateTimeField(auto_now=True)
+    # product_stars = models.CharField(max_length=1);    
+
+18.1 - And then we go on new app's admin.py file and do some code there, 
+from django.contrib import admin
+from addproducts.models import Product_Entries
+class saveProductEntries(admin.ModelAdmin):
+    list_display=('product_from', 'product_name', 'product_price', 'product_create_date', 'product_update_date','product_image');
+admin.site.register(Product_Entries,saveProductEntries);
+
+
+
+########################################################################
+####### Commit : 2nd ########################################################
+########################################################################
+
+
+
+18.2 - So after creates model, we do apply three steps, first we do makemigrations,
+so that there is created schema on migration file under app, and then we do migrate and then it is created as table.  
+|.....> python manage.py makemigrations
+|.....> python manage.py migrate
+So you want to know to do three things, first is make model, then convert it into migrations by makemigration command, 
+and in the last we do migrate to that table is created in sqlite database file. And then we forward things ahead. 
+18.3 - And after that we add all product's data one-by-one there.
+
+
+
+########################################################################
+####### Commit : 3nd ########################################################
+########################################################################
+
+
+
+18.3 - And Now i'm Adding all Men's, Women's and Kid's Data, And its all working perfectly. 
+And I'm also implementinmg class activeness logic. So okkay now I'm commiting again!
+
+
+
+########################################################################
+####### Commit : 4nd ########################################################
+########################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
