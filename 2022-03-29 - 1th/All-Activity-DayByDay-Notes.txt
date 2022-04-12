@@ -1,0 +1,198 @@
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 28-03-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+1. to make project...
+|.....> django-admin startproject letsShop
+
+2. to entered on the project...
+|.....> cd letsShop
+
+3. to run our server, two choices...
+|.....> python manage.py runserver
+|.....> python manage.py runserver 1999
+and then go on browser and run our project.
+
+
+
+########################################################################
+#######  Commit : Initial  ######################################################
+########################################################################
+
+
+
+4. then we make media, static, templates folders, so that in future we use these to store our html, css, js, jquery, bootstrap, images, or other files.
+
+5. then do makemigrations and migrate, 
+|.....> python manage.py makemigrations
+|.....> python manage.py migrate
+
+6. then command to create superuser is :
+|.....> python manage.py createsuperuser
+By the way here's superuser's name is "vashu07",
+And its password is also "vashu07".
+
+
+
+########################################################################
+####### Commit : 2nd ########################################################
+########################################################################
+
+
+
+7. then i'll try to reset the username's password,
+|.....> python manage.py changepassword vashu07
+So now, here's superuser's name is "vashu07",
+And its password is also "vashu12345".
+
+8. Now first i'm shifting my template's files to my projects saperate folders. 
+
+
+
+########################################################################
+####### Commit : 3rd ########################################################
+########################################################################
+
+
+
+9. Now we create urls.py file, so that we set a flow of our website.
+
+from django.contrib import admin
+from django.urls import path
+from letsShop import views
+urlpatterns = [
+    # by default
+    path('admin/', admin.site.urls),
+    # Initial URL's for Pages
+    path('',views.index),
+    path('index/',views.index),
+    path('about-us/',views.aboutus),
+    path('contact/',views.contact),
+    path('products/',views.products),
+    path('single-product/',views.singleproduct),
+]
+
+We also able to set according to ristrictions, but now not must to implementing this,
+path('products/<productsid>',views.productsDetails),
+path('products/<int:productsid>',views.productsDetails),
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+10. And then we create one views.py file under project's same name app. 
+And then do some code there, look to its overview like that...
+
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
+# Initial Function's to Display Pages
+def index(request):
+    return render(request,'index.html'); 
+def aboutus(request):
+    return render(request,'about-us.html'); 
+def contact(request):
+    return render(request,'contact.html'); 
+def products(request):
+    return render(request,'products.html'); 
+def singleproduct(request):
+    return render(request,'single-product.html'); 
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+11. To connect these templates with projects, 
+We visit under project's same name app, and open settings.py file,
+and its template's DIRS section you you set location, as,
+'DIRS' : [BASE_DIR,"templates"], 
+
+And with it, we also set location for our static files, 
+You written these below of "STATIC_URL" secttion...
+STATICFILES_DIRS = [
+    BASE_DIR,"static"
+    # BASE_DIR/"static"
+] 
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+12. And one more step is, go on each html file and set a proper path for all HTML files.
+And after this again run server, and just type given url, and just open it.
+Now everythings works fine, its only just template implementations, nothing extra,
+And all the next steps are in the next lecture, so follow more commits...
+
+
+
+########################################################################
+####### Commit : 4th ########################################################
+########################################################################
+
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 29-03-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+13. Here we adding some managing link first, so that links working properly,
+And after Some confirurations, we moving forwaord in the next step...
+
+
+14. Now we create a app to that we manage add, delete, edit all operation by there,
+|.....> python manage.py startapp addproducts 
+14.1 - Now under project's same name app's settings.py INSTALLED_APPS's section, mention your app name.
+14.2 - And also make urls.py file under the your new created addproducts app.
+
+
+
+########################################################################
+####### Commit : 1st ########################################################
+########################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
