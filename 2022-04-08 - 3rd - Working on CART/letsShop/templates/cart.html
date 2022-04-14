@@ -1,0 +1,103 @@
+
+
+
+{% extends "MASTER.html" %}
+
+
+{% block titlecontent %}
+Product Detail
+{% endblock %}
+
+
+{% block childcontent %}
+
+
+
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2>Single Product Page</h2>
+                        <!--
+                        <span>Awesome &amp; Creative HTML CSS layout by TemplateMo</span>
+                         -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+
+
+
+    {% for cartData, productData in gettingData %}
+
+    <!-- ***** Product Area Starts ***** -->
+    <section class="section" id="product">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                <div class="left-images">
+                    <img src="/media/{{productData.product_image}}" alt="">
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="right-content">
+                    <h4>Product Name : <b>{{productData.product_name}}</b></h4>
+                    <br>
+                    <h6>Product Quantity :  <b>{{cartData.product_quantity}}</b></h6>
+                    <h6>Product Price : <b>{{productData.product_price}}/-</b></h6>
+                    <div class="right-content"><a href="#"  style="align-items:right;">Want to update Quantity</a></div>
+                    <span class="price"></span>
+
+                    <ul class="stars">
+                    <center>
+                        {% for stars in myStars %}
+                            {% if stars == "1" %}
+                            <li><i class="fa fa-star"></i></li>
+                            {% elif stars == "0" %}
+                            <li><i class="fa fa-star-half-o"></i></li>
+                            {% elif stars == "" %}
+                            <li><i class="fa fa-star-o"></i></li>
+                            {% endif %}
+                        {% endfor %} 
+
+                        <ul>
+                            <div class="total">
+                                <div class="main-border-button"><a href="#">Payment Now</a></div>
+                            </div>
+                        </ul>
+                        <!-- <ul>
+                            <div class="total">
+                                <div class="main-border-button" style="background-color: red; color: white;"><a href="#">Product on the way</a></div>
+                            </div>
+                        </ul> -->
+                    </center>
+                    </ul>
+
+                    <!-- 
+                    <div class="quote">
+                        <p>{{productData.product_details | safe}}</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Product Area Ends ***** -->
+    {% endfor %}   
+
+
+{% endblock %}
+
+
+
+
+
+
+
