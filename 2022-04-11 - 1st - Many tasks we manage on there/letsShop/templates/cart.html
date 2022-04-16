@@ -1,0 +1,166 @@
+
+
+
+{% extends "MASTER.html" %}
+
+
+{% block titlecontent %}
+Product Detail
+{% endblock %}
+
+
+{% block childcontent %}
+
+
+
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2>Single Product Page</h2>
+                        <!--
+                        <span>Awesome &amp; Creative HTML CSS layout by TemplateMo</span>
+                         -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+
+
+
+    {% for cartData, productData in gettingData %}
+
+    <!-- ***** Product Area Starts ***** -->
+    <section class="section" id="product">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                <div class="left-images">
+                    <img src="/media/{{productData.product_image}}" alt="">
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="right-content">
+                    <h4>Product Name : <b>{{productData.product_name}}</b></h4>
+                    <p><h6>Product Quantity :  <b>{{cartData.product_quantity}}</b></h6>
+                    <h6>Product Price : <b>{% widthratio cartData.product_quantity 1 productData.product_price %}/-</b></h6>
+                     <small><b style="color: lightgray;">({{productData.product_price}}/- each product's cost.)</b></small></p>
+                     {% if cartData.is_payment_done == "Yes" %}
+                    <div class="right-content" style="color: blue;">Want to update Quantity</div>
+                     <small><b style="color: dimgray;">Note : After ones payment done, updation disabled!</b></small></p>
+                    {% else %}
+                    <div class="right-content"><a href="/updatequantity/{{productData.product_slug}}" style="align-items:right;">Want to update Quantity</a></div>
+                    {% endif %}
+                    <span class="price"></span>
+
+                    <ul class="stars">
+                    <center>
+                        {% for stars in myStars %}
+                            {% if stars == "1" %}
+                            <li><i class="fa fa-star"></i></li>
+                            {% elif stars == "0" %}
+                            <li><i class="fa fa-star-half-o"></i></li>
+                            {% elif stars == "" %}
+                            <li><i class="fa fa-star-o"></i></li>
+                            {% endif %}
+                        {% endfor %} 
+
+                        <ul>
+                            <div class="total">
+                                {% if cartData.is_payment_done == "Yes" %}
+                                <div class="main-border-button"><a href="#">Product on the way</a></div>
+                                {% else %}
+                                <div class="main-border-button" style="background-color: red"><a href="/payments/{{productData.product_slug}}">Payment Now</a></div>
+                                {% endif %}
+                            </div>
+                        </ul>
+                        <!-- <ul>
+                            <div class="total">
+                                <div class="main-border-button" style="background-color: white"><a href="#">Product on the way</a></div>
+                            </div>
+                        </ul> -->
+                    </center>
+                    </ul>
+
+                    <!-- 
+                    <div class="quote">
+                        <p>{{productData.product_details | safe}}</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+    <span class="price"></span>
+    <!-- ***** Product Area Ends ***** -->
+    {% endfor %}   
+
+
+
+
+
+
+    <!-- ***** Last Total Prices Section ***** -->
+    <section class="section" id="product"  style="background-color: white; padding: 10px;">
+        <div class="container"  style="background-color: dimgray; padding: 10px;">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="left-images">
+                    </div>
+                </div>
+
+                <div class="col-lg-9">
+                    <span class="price"></span>
+                    <div class="right-content" style="background-color: dimgray; padding: 10px;">
+                        <span class="price"></span>
+                        <br>
+                        <h5 style="color: white;">All Product's  : <b>{{alloverData.totalProduct}}</b></h5>
+                        <h5 style="color: white;">All Product's Quantity  : <b>{{alloverData.totalProductQuentity}}</b></h5>
+                        <h5 style="color: white;">All Product's Total Price  : <b>{{alloverData.totalCost}}/-</b></h5>
+                        <span class="price"></span>
+                        <ul class="stars" style="background-color: dimgray; padding: 10px;">
+                            <span class="price"></span>
+                            <br>
+                            <!-- <div class="total" style="background-color: red"> 
+                                <div class="main-border-button"><a href="#"></a></div>
+                            </div> -->
+                            <div class="total">
+                                {% if alloverData.totalProduct == 0 %}
+                                <div class="main-border-button"><a href="#">All Payments Already Done</a></div>
+                                {% else %}
+                                <div class="main-border-button" style="background-color: red"><a href="#">All Payments in One Step</a></div>
+                                {% endif %}
+                            </div>
+                            <!-- <div class="total" style="background-color: dimgray">
+                                <div class="main-border-button"><a href="#"></a></div>
+                            </div> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
