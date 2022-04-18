@@ -1,0 +1,98 @@
+
+
+
+{% extends "MASTER.html" %}
+
+
+{% block titlecontent %}
+Contact
+{% endblock %}
+
+
+{% block childcontent %}
+
+
+
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top">
+        <div class="container" style="height: 250px">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2>Sign In</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+    <!-- ***** Contact Area Starts ***** -->
+    <div class="contact-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-heading">
+                        <h2>SignIn Form</h2>
+                    </div>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <fieldset>
+                              <input name="name" type="text" id="name" placeholder="Your name" required/>
+                            </fieldset>
+                          </div>
+                          <div class="col-lg-12" style="height: 10px;"></div>
+                          <div class="col-lg-6">
+                            <fieldset>
+                              <input name="email" type="text" id="email" placeholder="Your email" required/>
+                            </fieldset>
+                          </div>
+                          <div class="col-lg-6">
+                            <fieldset>
+                              <input name="mno" type="text" id="mno" placeholder="Your Mobile Number" required/>
+                            </fieldset>
+                          </div>
+                          <div class="col-lg-12" style="height: 10px;"></div>
+                          <div class="col-lg-6">
+                            <fieldset>
+                              <input name="address" type="text" id="address" placeholder="Your Address" required/>
+                            </fieldset>
+                          </div>
+                          <div class="col-lg-6">
+                            <fieldset>
+                              <input name="areapincode" type="text" id="areapincode" placeholder="Your Area/Pin Code" required/>
+                            </fieldset>
+                          </div>
+                          <div class="col-lg-12" style="height: 15px;"></div>
+                          <div class="col-lg-4">
+                            <b style="color: darkslategray;">Varify By???</b>
+                                <select name="varifyby"  class="col-lg-20">
+                                  <option value="email">Email</option>
+                                  <option value="mno">Mobile Number</option>
+                                </select>
+                          </div>
+                          <div class="col-lg-6">
+                            <fieldset>
+                              <button type="submit" id="form-submit" class="main-dark-button" style="width: 150px;"><i class="fa fa-paper-plane"></i></button>
+                            </fieldset>
+                            <iframe></iframe>
+                          </div>
+                        </div>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Contact Area Ends ***** -->
+
+
+
+{% endblock %}
+
+
+
+
+
+
