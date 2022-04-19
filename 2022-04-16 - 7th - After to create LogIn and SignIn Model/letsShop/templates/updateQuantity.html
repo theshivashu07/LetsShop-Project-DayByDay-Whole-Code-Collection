@@ -1,0 +1,76 @@
+
+
+
+{% extends "MASTER.html" %}
+
+
+{% block titlecontent %}
+Product Detail
+{% endblock %}
+
+
+{% block childcontent %}
+
+
+
+
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top">
+        <div class="container" style="height: 250px">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2>Single Product Page</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+
+
+
+    <!-- ***** Product Area Starts ***** -->
+    <section class="section" id="product">
+            <div class="col-lg-12">
+            	<center
+                <div class="right-content">
+                    <h4>Product Name : <b>{{gettingData.product_name}}</b></h4>
+
+                    <form method="POST">
+                    {% csrf_token %}
+                    <p><h6>Product Quantity :  
+                              <input name="productquantity" type="text" id="text" value="{{gettingData.product_quantity}}" style="width: 50px;" required/>
+                              <button type="submit" id="form-submit" class="main-dark-button"><a href="/updatequantity/{{gettingData.product_slug}}"><i class="fa fa-paper-plane"></i></a></button>
+                    </p>
+                    </form>
+                    <p><h6>Product Price : <b>{{gettingData.product_totalprice}}/-</b></h6>
+                     <small><b style="color: lightgray;">({{gettingData.product_price}}/- each product's cost.)</b></small></p>
+                    <span class="price"></span>
+                </div>
+            </div>
+    </section>
+    <span class="price"></span>
+    <!-- ***** Product Area Ends ***** -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
