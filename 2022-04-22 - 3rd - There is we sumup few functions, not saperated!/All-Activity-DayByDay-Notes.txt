@@ -1,0 +1,873 @@
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 28-03-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+1. to make project...
+|.....> django-admin startproject letsShop
+
+2. to entered on the project...
+|.....> cd letsShop
+
+3. to run our server, two choices...
+|.....> python manage.py runserver
+|.....> python manage.py runserver 1999
+and then go on browser and run our project.
+
+
+
+########################################################################
+#######  Commit : Initial  ######################################################
+########################################################################
+
+
+
+4. then we make media, static, templates folders, so that in future we use these to store our html, css, js, jquery, bootstrap, images, or other files.
+
+5. then do makemigrations and migrate, 
+|.....> python manage.py makemigrations
+|.....> python manage.py migrate
+
+6. then command to create superuser is :
+|.....> python manage.py createsuperuser
+By the way here's superuser's name is "vashu07",
+And its password is also "vashu07".
+
+
+
+########################################################################
+####### Commit : 2nd ########################################################
+########################################################################
+
+
+
+7. then i'll try to reset the username's password,
+|.....> python manage.py changepassword vashu07
+So now, here's superuser's name is "vashu07",
+And its password is also "vashu12345".
+
+8. Now first i'm shifting my template's files to my projects saperate folders. 
+
+
+
+########################################################################
+####### Commit : 3rd ########################################################
+########################################################################
+
+
+
+9. Now we create urls.py file, so that we set a flow of our website.
+
+from django.contrib import admin
+from django.urls import path
+from letsShop import views
+urlpatterns = [
+    # by default
+    path('admin/', admin.site.urls),
+    # Initial URL's for Pages
+    path('',views.index),
+    path('index/',views.index),
+    path('about-us/',views.aboutus),
+    path('contact/',views.contact),
+    path('products/',views.products),
+    path('single-product/',views.singleproduct),
+]
+
+We also able to set according to ristrictions, but now not must to implementing this,
+path('products/<productsid>',views.productsDetails),
+path('products/<int:productsid>',views.productsDetails),
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+10. And then we create one views.py file under project's same name app. 
+And then do some code there, look to its overview like that...
+
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
+# Initial Function's to Display Pages
+def index(request):
+    return render(request,'index.html'); 
+def aboutus(request):
+    return render(request,'about-us.html'); 
+def contact(request):
+    return render(request,'contact.html'); 
+def products(request):
+    return render(request,'products.html'); 
+def singleproduct(request):
+    return render(request,'single-product.html'); 
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+11. To connect these templates with projects, 
+We visit under project's same name app, and open settings.py file,
+and its template's DIRS section you you set location, as,
+'DIRS' : [BASE_DIR,"templates"], 
+
+And with it, we also set location for our static files, 
+You written these below of "STATIC_URL" secttion...
+STATICFILES_DIRS = [
+    BASE_DIR,"static"
+    # BASE_DIR/"static"
+] 
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+12. And one more step is, go on each html file and set a proper path for all HTML files.
+And after this again run server, and just type given url, and just open it.
+Now everythings works fine, its only just template implementations, nothing extra,
+And all the next steps are in the next lecture, so follow more commits...
+
+
+
+########################################################################
+####### Commit : 4th ########################################################
+########################################################################
+
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 29-03-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+13. Here we adding some managing link first, so that links working properly,
+And after Some confirurations, we moving forwaord in the next step...
+
+
+14. Now we create a app to that we manage add, delete, edit all operation by there,
+|.....> python manage.py startapp addproducts 
+14.1 - Now under project's same name app's settings.py INSTALLED_APPS's section, mention your app name.
+14.2 - And also make urls.py file under the your new created addproducts app.  # But Its no needed there, so that also delete! 
+
+
+
+########################################################################
+####### Commit : 1st ########################################################
+########################################################################
+
+
+
+NOTE : Here must thing is how to we manage star rating related thing,
+I mentioned it there, because it takes my more time, so always rem,ember this step.
+<ul class="stars">
+    <li><i class="fa fa-star"></i></li>               // full blank
+    <li><i class="fa fa-star"></i></li>               // full blank
+    <li><i class="fa fa-star"></i></li>               // full blank
+    <li><i class="fa fa-star-half-o"></i></li>    // half
+    <li><i class="fa fa-star-o"></i></li>           // full blank
+<ul>
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+Make Module with integration of AutoSlugField, HTMLField, Image FileField, and about stars too.
+
+15. Now we use AutoSlugField, because of we want to store product's slug internally automatically, 
+But first we install python-django's one package there, 
+|.....> pip install django-autoslug
+For Example : product_slug = AutoSlugField(populate_from='my_name', unique=True, null=True, default=None);
+Actually here 'populate_from' means which field's thrue we want to make slug, and other are basics.
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+16. Here is we also use HTMLField to Integration TinyMCE Editor project, so that details show uniquly, 
+Here before to implement tinymce, first task is to we install 'tinymce' package:
+|.....> pip install django-tinymce 
+For Example : product_details = HTMLField(); 
+Then you go under project's same name app's settings.py file's INSTALLED_APPS section, 
+and add there 'tinymca', and in the last also add below code, And then we are free to do use this editor on our project.
+# Must to add this, if you use 'tinymce' editor...
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField';
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+17. And because we want to create model, and there is must to use Image FileField, to take products image. 
+17.1 - Whenever we works with media's, must is under the project, first we create 'media' name's folder, where all uploading files storing. 
+17.2 - Then second step is we go on settings.py file and must to write two line there, if we want to work with media,
+# Must to add if we want to work with MEDIA's related things
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"
+17.3 - Then third step is we importing importing some things, under project's same name app's urls.py file's,
+..........................................
+# these importing is must if we working with media related thing
+from django.conf import settings 
+from django.conf.urls.static import static 
+urlpatterns = [
+    ...........................................
+]
+# this is also must if we working with media related things
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+Then now we are free to use this Image FileField, in our modules, but use carefully,
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+18. Then now we are moving to create models, here we create class who covers all products, 
+class Product_Entries(models.Model):
+    product_from = models.CharField(max_length=50);
+    product_name = models.CharField(max_length=100);
+    product_details = HTMLField(); 
+    product_price = models.CharField(max_length=10);
+    product_image = models.FileField(upload_to="products/", max_length=250,null=True,default=None);
+    product_slug = AutoSlugField(populate_from='product_name', unique=True, null=True, default=None);
+    product_create_date = models.DateTimeField(auto_now_add=True)
+    product_update_date = models.DateTimeField(auto_now=True)
+    # product_stars = models.CharField(max_length=1);    
+
+18.1 - And then we go on new app's admin.py file and do some code there, 
+from django.contrib import admin
+from addproducts.models import Product_Entries
+class saveProductEntries(admin.ModelAdmin):
+    list_display=('product_from', 'product_name', 'product_price', 'product_create_date', 'product_update_date','product_image');
+admin.site.register(Product_Entries,saveProductEntries);
+
+
+
+########################################################################
+####### Commit : 2nd ########################################################
+########################################################################
+
+
+
+18.2 - So after creates model, we do apply three steps, first we do makemigrations,
+so that there is created schema on migration file under app, and then we do migrate and then it is created as table.  
+|.....> python manage.py makemigrations
+|.....> python manage.py migrate
+So you want to know to do three things, first is make model, then convert it into migrations by makemigration command, 
+and in the last we do migrate to that table is created in sqlite database file. And then we forward things ahead. 
+18.3 - And after that we add all product's data one-by-one there.
+
+
+
+########################################################################
+####### Commit : 3nd ########################################################
+########################################################################
+
+
+
+18.3 - And Now i'm Adding all Men's, Women's and Kid's Data, And its all working perfectly. 
+And I'm also implementinmg class activeness logic. So okkay now I'm commiting again!
+
+
+
+########################################################################
+####### Commit : 4nd ########################################################
+########################################################################
+
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 30-03-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+19 - Now we manage "about-us" page's all Team Members related things, so for that we make models, 
+and including instagram, facebook, twitter, linkedin and github  linkings we do every steps there.
+But i'm doing two commits there, so that if in future you dont want this model, then we recommitting in future. 
+
+
+
+########################################################################
+####### Commit : 1nd(Before) ###################################################
+####### Commit : 2nd(After) ####################################################
+########################################################################
+
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 31-03-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+20 - I'm working on feature to show all stars and also manage add to cart button,
+actually means is simple, i'm facing truble to show stars, so always remember that...
+between your data and and checking data, must is you write "==" sign with spaces, see this below,
+<ul class="stars">
+    {% for stars in myStarsers %}
+        {% if stars == "1" %}
+                         ^    ^  
+        <li><i class="fa fa-star"></i></li> 
+        {% elif stars == "0" %} 
+        <li><i class="fa fa-star-half-o"></i></li> 
+        {% elif stars == "" %} 
+        <li><i class="fa fa-star-o"></i></li> 
+        {% endif %} 
+    {% endfor %} 
+</ul> 
+
+And with it, we also able to set our add to cart button, in perfect place.
+
+
+
+########################################################################
+####### Commit : 1nd ########################################################
+########################################################################
+
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 05-04-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+21 - Here first we manage our three files to do saperate, 
+because now mens womens kids section managed by three html files,
+but we want to sumup, so that we managed it.
+and only one if-elif-elif statement we using there, see below,
+..................
+    ..................
+        {% if request.path == '/mens/' %}
+            <h2>Men's Latest</h2>
+        {% elif request.path == '/womens/' %}
+            <h2>Women's Latest</h2>
+        {% elif request.path == '/kids/' %}
+            <h2>Kid's Latest</h2>
+        {% endif %}
+    ..................
+..................
+and now our new file is "overall-products-area.html". 
+
+
+Oppppps!
+There is i did a big mistake, actually intially i make "overall-___-area.html" name's file.
+the suddnly change his name, but not write this name in views.py file. Thats why we again push data
+
+
+
+########################################################################
+####### Commit : 1st ########################################################
+####### Commit : 1st 2.0 ######################################################
+########################################################################
+
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 06-04-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+22 - Now we are again going to set add to cart button, or shoping button on top, 
+And also make a page for this, saperatly, and there show all add to cart products. 
+
+Right now, I's setup all product collection page correction, Actually there is i'm confused that...
+...that why things are not happenings, and then after a day, i find out, now see this below code, 
+
+Way-1 : Here we use our first way, by urls,
+| overall-products-area.html
+    <li><a type="submit" href="/cart-add/{{data.product_slug}}/{{request.path}}">................</a></li>
+| urls.py
+    path('cart-add/<slug:productsslug>/<path:urllocation>',views.cartadd,name="cart-add"), 
+| views.py
+def cartadd(request,productsslug,urllocation): 
+
+Way-2 : Here we use our first way, by urls fuctions
+| overall-products-area.html
+    <li><a type="submit" href="{% url 'cart-add' urllocation=request.path productsslug=data.product_slug %}">................</a></li>
+| urls.py
+    path('cart-add/<slug:productsslug>/<path:urllocation>',views.cartadd,name="cart-add"), 
+| views.py
+def cartadd(request,productsslug,urllocation): 
+    return redirect(......); 
+
+
+
+########################################################################
+####### Commit : 1st  ########################################################
+########################################################################
+
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 07-04-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+22 - Now first we add our card-add and cart option saperatly, and linking this. 
+So this commit id before to create AddToCART model. SO be prapare it..... 
+
+
+
+########################################################################
+####### Commit : 1st  ########################################################
+########################################################################
+
+
+
+23.1 - And there is we create our model, and atteched it with both add to cart buttons, 
+And we also recreate a views.py's function, so that our this procedure runs smoothly, 
+So this commit is after AddToCART model, so we commiting there too..... 
+
+
+
+########################################################################
+####### Commit : 2nd ########################################################
+########################################################################
+
+
+
+23.2 - Here we manage our duplicate entries, because sometimes if we already add to cart any product,
+then if we again click on it so this not added again, so we apply bariarrs there, so lets set this in that commit..... 
+
+
+
+########################################################################
+####### Commit : 3rd  ########################################################
+########################################################################
+
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 08-04-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+24 - Here first we want to add one more field on AddToCART table, and name is "product_quantity",
+And that's it, actually i'm forgotting to add this field, so we make it that there..... 
+
+But unfortunatly its not heppens perfectly, so we want to again recreate database, so we want "22".
+means "date:07-04-2022" and commit no-1, and after mention field, we again do makemigrations and migrate, 
+by the way our AddToCART table not have any datasets there..... And then finally we again run this, okay....
+
+SO there is we do two commits:
+first is before to create model, so that in future if we want again add any field, then that time we considering this.....
+and second is just after this, and after also some file content addings...
+
+
+
+########################################################################
+####### Commit : 1st  ########################################################
+####### Commit : 2nd ########################################################
+########################################################################
+
+
+
+25 - Now we are moving to manage CART option, and also work on desiging of cart. 
+
+
+
+########################################################################
+####### Commit : 3rd ########################################################
+########################################################################
+
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 09-04-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+26 - Here we adding total cost feature in tamplate, and most important this is that,
+here we learn about how to we multiply two variable's data in django templates,
+In the below we discribe things, by the way we only use multiplication there...
+
+Ways : You can use the built-in "widthratio" template tag.
+>> a*b use {% widthratio a 1 b %}
+>> a/b use {% widthratio a b 1 %}
+For Example : we have product's price and quentity, then:
+>> Multiplication : {% widthratio data.price data.quentity 1 %}
+>> Division : {% widthratio data.price 1 data.quentity %}
+
+And more desigining related work we done there, and then commiting!
+
+
+
+########################################################################
+####### Commit : 1st  ########################################################
+########################################################################
+
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 10-04-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+27 - Now we are working on 'Want to update Quantity' feature,
+so we create a one url and view and one html file, and all's name is "updateQuantity" 
+And yess okay this feature is now working well, and now we commiting! 
+
+But here is few problem comes if we add more products. Not a big issue,
+Actually we counting total product's price and count, but not adding old values,
+and thats why only last product's value and count showing there, but we solve this...
+
+
+########################################################################
+####### Commit : 1st  ########################################################
+####### Commit : 2nd ########################################################
+########################################################################
+
+
+28 - Now we are working on payment system, by the way now not really,
+actually now we only create a model and there we do entry, 
+and set a flow that if we do payment then how the things are heppens inside,
+Here we not do transection exectly, only set flow, so remember it always.....
+
+and we do three commits there, before create model and after it.....
+and third is on the ways's workings.....
+
+
+########################################################################
+####### Commit : 3rd  ########################################################
+####### Commit : 4th  ########################################################
+####### Commit : 5th ########################################################
+########################################################################
+
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 11-04-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+29 - today we working on payment's way only, actually we want many changes on there, 
+because in a cart we want to do many changes, because if payment is done then on cart show different things,
+so actually we want many changes there, so may be many commits we do there,
+Actually there we make two more fields on 'AddToCart' model, so that we manage our payment and delivery,
+And under 'cart' we manage many things, nnot possible to discribe, but now cart option works well!
+
+
+
+########################################################################
+####### Commit : 1st  ########################################################
+########################################################################
+
+
+30 - Listen ver clearly, now we create many feature, who works smoothly, but first listen one note below,
+Here is we order product directly also, if we tap there so one product automatically added on cart,
+but if you again click it, then it transfer you product's ordering page, and there is you set your quentity,
+And yess if you ones pay payment, then if you more product adding on cart then it show saperatly,
+and then things are again saperated, means in ones click cart by 1 quentity and other clicks it redirect on product's ordering page. 
+
+And actually there is we do many things on views.py file. Actually now i'm satisfide because i do that what i want now!
+And we do add many more features, but after this commit!
+
+
+
+########################################################################
+####### Commit : 2nd ########################################################
+########################################################################
+
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 15-04-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+31 - Now we are working on "All Payments in One Step" feature,
+so that we done all payment's in one click, thats the bestest feature there.
+
+Here in first commit we do make simple code but because we repeate same code there,
+so under second commit we do sort our this code, using functional programming. thatsit.
+
+
+
+########################################################################
+####### Commit : 1st  ########################################################
+####### Commit : 2nd ########################################################
+########################################################################
+
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 16-04-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+32 - Now we are working on "Remove CART" option, actually if we order something,
+then there one more option available in each and every website, and it is if you want to "Remove CART",
+so i'm including this feature in my project too.....
+
+
+
+########################################################################
+####### Commit : 1st  ########################################################
+########################################################################
+
+
+33 - Now we are working on "Canceled This Order" feature, because its must that if user want to cancel product,
+then this is also possible to doing by user, so this commit is overall after creating this cfeature implementations... 
+actually here wa want to take cart id, so that according to this we remove this product order so that we pass id there,
+
+Here is i'm doing two commits, 
+first commit is for "if you want to cancel order, but not remove on cart", means on cart show same as before payments.
+[Working on 'Canceled This Order' - payment remove, but cart not remove]
+And second commit is for "if you want to cancel order, and also remove on cart", 
+[ Working on 'Canceled This Order' - payment and cart both remove] 
+
+
+
+########################################################################
+####### Commit : 2nd ########################################################
+####### Commit : 3rd ########################################################
+########################################################################
+
+
+34 - Now we again manage my MASTER.html file.
+Because we want to remanage header section's buttons.
+
+
+
+########################################################################
+####### Commit : 4th ########################################################
+########################################################################
+
+
+35 - Now we set a flow of login and signin, so here create a urls, functions on views, and saperatly html files,
+and also do linking all of these. by the way now we only linking, not data savings.,and now commit. 
+
+
+
+########################################################################
+####### Commit : 5th ########################################################
+########################################################################
+
+
+36 - Now we creating models for LogIn and SignIn, so its definate that we do two commits there,
+first is just before create model and second is after create model, so lets ready to commit.....
+I'm missing two fields to create in SignIn model, so we recreate it, and again commit it.....
+
+
+
+########################################################################
+####### Commit : 6th ########################################################
+####### Commit : 7th ########################################################
+####### Commit : 8th ########################################################
+########################################################################
+
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 22-04-2022 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+37 - Here we are so confused to create a SignIn feature, because here is we make all things in one page,
+means SignIn Home, the OTP Checking and also on there is asks username and password. and for else conditions management.
+But always remember that, dont store values saperated by coma, otherwise data store in tuple format, like:(vashu,). 
+And in bydefault section we filter all rows where username not assign, and we delete all these rows, because these are defaulter's...
+
+But there is we do Four commits, for SignIn.....
+> First is simple SignIn's, there is we manage all the tasks by if else. and if OTP and Password is not matched then we moving another function. #AllInOnePage
+> Second is same like first, but there is our password is not match then username show same, as you entered last, nothing a big change, but its also a feature,
+and here is we consider password to delete all rows who is not valid, in SignIn default section, because we saved the password here even after it was wrong, thats why we fix this.
+> But third is needed because suppose if OTP and Password is not matched then we not moving another function, we solving this on existing function.
+
+
+
+########################################################################
+####### Commit : 1st  ########################################################
+####### Commit : 2nd ########################################################
+####### Commit : 3rd ########################################################
+########################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
